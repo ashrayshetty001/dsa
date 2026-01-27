@@ -1,4 +1,4 @@
-package stack;
+package stack_and_queue;
 import java.util.Stack;
 public class duplicate_parentheses {
     public static boolean isDuplicate(String s){

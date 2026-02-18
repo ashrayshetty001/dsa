@@ -166,6 +166,7 @@ public class bst {
 
         return new Info(size, min, max, false);
     }
+    
 }
     
     public static void main(String args[]){

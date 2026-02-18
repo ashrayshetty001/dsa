@@ -150,6 +150,37 @@ public class basic {
                     areIdentical(tree1.right, tree2.right);
         }
     }
+    public List<List<Integer>> zigzagLevelOrderList(Node root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        boolean leftToRight = true;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> currentLevel = new ArrayList<>(size);
+            for (int i = 0; i < size; i++) {
+                Node currentNode = queue.poll();
+                if (leftToRight) {
+                    currentLevel.add(currentNode.data);
+                } else {
+                    currentLevel.add(0, currentNode.data); // Add to the front for right to left
+                }
+                if (currentNode.left != null) {
+                    queue.add(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    queue.add(currentNode.right);
+                }
+            }
+            result.add(currentLevel);
+            leftToRight = !leftToRight; // Toggle direction
+        }
+        return result;
+    }
 
     // Horizontal Distance helper class
     static class Info {

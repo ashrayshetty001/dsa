@@ -97,4 +97,37 @@ public class linked{
         }
         return head;
     }
+    public boolean isPalindrome(){
+        if(head==null || head.next==null){
+            return true;
+        }
+        //find mid
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        //reverse 2nd half
+        Node curr=slow;
+        Node prev=null;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        //check palindrome
+        Node right=prev;
+        Node left=head;
+        while(right!=null){
+            if(left.data!=right.data){
+                return false;
+            }
+            left=left.next;
+            right=right.next;
+        }
+        return true;
+    }
 }
